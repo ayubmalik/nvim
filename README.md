@@ -4,7 +4,10 @@ nvim config.
 This repo should be cloned to `~/.config/nvim~ .e.g
 
 ```
-cd ~/config && git clone https://github.com/ayubmalik/nvim
+
+mkdir -p ~/.config
+git clone https://github.com/ayubmalik/nvim ~/.config/nvim
+
 ```
 ~~on a mac run `mkdir -p ~/.config/nvim` first.~~
 
