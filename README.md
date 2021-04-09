@@ -1,7 +1,7 @@
 # nvim
 nvim config.
 
-This repo should be cloned to `~/.config/nvim~ .e.g
+This repo should be cloned to `~/.config/nvim~` i.e.
 
 ```
 mkdir -p ~/.config
@@ -27,7 +27,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 ```
 
 ## Install/Update plugins
-In vim run
+Inside nvim run
 
 ```
 :PlugUpdate
