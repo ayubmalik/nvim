@@ -1,7 +1,7 @@
 # nvim
 nvim config.
 
-This repo should be cloned to `~/.config/nvim~` i.e.
+This repo should be cloned to `~/.config/nvim/` i.e.
 
 ```
 mkdir -p ~/.config
