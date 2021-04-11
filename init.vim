@@ -12,7 +12,7 @@ set showmode
 set encoding=utf-8
 set fileencoding=utf-8
 set noerrorbells
-set novisualbell
+set visualbell
 set ruler
 set lazyredraw
 set magic
