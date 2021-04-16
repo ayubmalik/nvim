@@ -34,7 +34,7 @@ set tabstop=4
 " key mappings
 inoremap kj <esc>
 inoremap <leader>w <esc>:write<cr>
-inoremap <c-s> <esc>:update<cr>a
+inoremap <c-s> <esc>:update<cr>
 nnoremap <f2> :set relativenumber!<cr>
 nnoremap <f3> :set hlsearch!<cr>
 nnoremap <c-s> :update<cr>
