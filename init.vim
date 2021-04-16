@@ -5,20 +5,23 @@ syntax on
 filetype indent plugin on
 
 " general
+set autoread
+set cursorline
 set encoding=utf-8
 set fileencoding=utf-8
 set hidden
-set history=200
+set history=100
 set lazyredraw
 set magic
-set nocompatible
 set noerrorbells
+set nofoldenable
 set number
 set ruler
-set showmode
 set splitbelow
+set splitright
 set termguicolors
 set visualbell
+set wildmenu
 
 " tabs/settings
 set autoindent
@@ -31,23 +34,10 @@ set tabstop=4
 " key mappings
 inoremap kj <esc>
 inoremap <leader>w <esc>:write<cr>
-nnoremap <F3> :set hlsearch!<CR>
-
-" vim-plug
-call plug#begin()
-  Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-surround'
-  Plug 'fatih/vim-go'
-  Plug 'brookhong/ag.vim'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'chriskempson/base16-vim'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'leafgarland/typescript-vim'
-call plug#end()
-
-colorscheme base16-material-darker
+inoremap <c-s> <esc>:update<cr>a
+nnoremap <f2> :set relativenumber!<cr>
+nnoremap <f3> :set hlsearch!<cr>
+nnoremap <c-s> :update<cr>
 
 "neovim terminal bindings
 if has('nvim')
@@ -57,6 +47,30 @@ if has('nvim')
   tnoremap <c-v>w <c-\><c-n><c-w>w
   :au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 endif
+
+" netrw
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_hide = 1
+let g:netrw_liststyle = 0
+let g:netrw_list_hide = '^\..*,.*\.lock$,tags'
+let g:netrw_winsize = 20
+
+" vim-plug
+call plug#begin()
+  Plug 'chriskempson/base16-vim'
+  Plug 'fatih/vim-go'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+call plug#end()
+
+colorscheme base16-material-darker
 
 " vim-go bindings
 nnoremap <leader>a :cclose<cr>
@@ -69,20 +83,6 @@ let g:go_auto_type_info = 0
 "map <c-n> :cnext<cr>
 "map <c-m> :cprevious<cr>
 
-" ctrlp detect project bases
-let g:ctrlp_match_window = 'min:16,max:64'
-let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'build.gradle', 'package.json', 'go.mod']
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$|[\/](build|node_modules|out|.vscode)',
-  \ 'file': '\v\.(exe|so|dll)$'
-  \ }
-
-"neovim
-if has('nvim')
-  tnoremap <esc> <c-\><c-n>
-  tnoremap <m-[> <esc>
-  tnoremap <c-v><esc> <esc>
-  tnoremap <c-v>w <c-\><c-n><c-w>w
-  :au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-endif
-
+" FZF mappings
+let $FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,.vscode/*,.idea/*}"'
+nnoremap <c-p> :Files<cr>
