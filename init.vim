@@ -71,6 +71,7 @@ call plug#begin()
 call plug#end()
 
 colorscheme base16-material-darker
+let g:airline_theme='base16'
 
 " vim-go bindings
 nnoremap <leader>a :cclose<cr>
