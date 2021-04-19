@@ -68,6 +68,8 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
 colorscheme base16-material-darker
@@ -87,3 +89,19 @@ let g:go_auto_type_info = 0
 " FZF mappings
 let $FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*,.vscode/*,.idea/*}"'
 nnoremap <c-p> :Files<cr>
+
+" LSP im $NVIM/lua folder
+lua require("lsp-config") 
+
+"completion plugin
+inoremap <c-space> <c-x><c-o>
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
