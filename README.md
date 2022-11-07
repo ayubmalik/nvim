@@ -9,8 +9,7 @@ This repo should be cloned to `~/.config/nvim`:
 mkdir ~/.config
 mv ~/.config/nvim ~/.config/_nvim 2>/dev/null
 
-git clone https://github.com/ayubkrakenflex/nvim ~/.config/nvim
-
+git clone git@github.com:ayubkrakenflex/nvim.git ~/.config/nvim
 ```
 
 # Packer
