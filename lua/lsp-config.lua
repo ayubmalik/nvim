@@ -17,7 +17,14 @@ require('lspconfig').gopls.setup {
 }
 
 require("lspconfig").sumneko_lua.setup {
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+        Lua =  {
+            diagnostics = {
+                globals = { "vim" }
+            }
+        }
+    }
 }
 
 require("lspconfig").tsserver.setup {
