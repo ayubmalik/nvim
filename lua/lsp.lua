@@ -1,2 +1,0 @@
--- Lsp config
-

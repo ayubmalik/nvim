@@ -3,5 +3,5 @@ require "keymap"
 require "plugins"
 require "colorscheme"
 require "completion"
-require "lsp"
+require "lsp-config"
 
