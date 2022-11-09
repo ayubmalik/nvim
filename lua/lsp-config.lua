@@ -67,6 +67,7 @@ end
 
 -- TODO(ayubm) use command group and only run for gopls?
 api.nvim_create_autocmd( {"BufWritePre"}, {pattern = "*.go", command = "lua OrgImports(1000)"})
+api.nvim_create_autocmd( {"BufWritePre"}, {pattern = "*.go", command = "lua vim.lsp.buf.formatting_sync()"})
 
 require('lspconfig').gopls.setup {
   capabilities = capabilities,

@@ -17,7 +17,8 @@ map("n", "<a-k>", ":m .-2<cr>")
 
 -- Insert
 map("i", "kj", "<esc>")
-map("i", "<c-s>", "<esc>:update<cr>a")
+-- map("i", "<c-s>", "<esc>:update<cr>a") -- stay insert
+map("i", "<c-s>", "<esc>:update<cr>") -- exit insert
 map("i", "<c-d>", "<esc>lxi")
 
 -- Visual
