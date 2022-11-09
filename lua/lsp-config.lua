@@ -13,11 +13,11 @@ require("mason-lspconfig").setup({
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 require('lspconfig').gopls.setup {
-    capabilities = capabilities
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 }
 
 require("lspconfig").sumneko_lua.setup {
-    capabilities = capabilities,
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
     settings = {
         Lua =  {
             diagnostics = {
@@ -28,6 +28,6 @@ require("lspconfig").sumneko_lua.setup {
 }
 
 require("lspconfig").tsserver.setup {
- capabilities = require('cmp_nvim_lsp').default_capabilities()
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 }
 
