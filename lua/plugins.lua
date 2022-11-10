@@ -26,7 +26,6 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "kyazdani42/nvim-web-devicons"
   use "folke/tokyonight.nvim"
-
   use {
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true }
@@ -37,6 +36,8 @@ return packer.startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
   -- lsp
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
@@ -45,6 +46,7 @@ return packer.startup(function(use)
   -- completion
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lsp-document-symbol"
   use "hrsh7th/cmp-nvim-lua"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"

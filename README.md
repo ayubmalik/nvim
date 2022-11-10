@@ -13,5 +13,9 @@ git clone git@github.com:ayubkrakenflex/nvim.git ~/.config/nvim
 ```
 
 # Packer
-TODO: packer should be installed automatically
+TODO: packer should be installed automatically. 
+
+```
+:PackerClean | PackerInstall
+```
 

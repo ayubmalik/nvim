@@ -1,17 +1,22 @@
--- Map space as leader
+-- Map shhpace as leader
 vim.g.mapleader = " "
 
--- TODO(ayubm) use vim.keymap.set
 local function map(mode, lhs, rhs)
   local options = { noremap = true, silent = true }
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  vim.keymap.set(mode, lhs, rhs, options)
 end
 
+local diffviewgrp = vim.api.nvim_create_augroup("diffview", { clear = true })
+vim.api.nvim_create_autocmd(
+  { "BufEnter" },
+  { group = diffviewgrp, pattern = { "diffview://*" }, command = "nnoremap <buffer> q :DiffviewClose<cr>" }
+)
 -- Normal
 map("n", "<f2>", ":24Lex<cr>")
 map("n", "<f3>", ":set relativenumber!<cr>")
 map("n", "<f4>", ":set hlsearch!<cr>")
-map("n", "<f5>", ":setlocal spell! spelllang=en_GB<cr>")
+map("n", "<f5>", ":DiffviewOpen<cr>")
+map("n", "<f6>", ":setlocal spell! spelllang=en_GB<cr>")
 map("n", "<c-s>", ":update<cr>")
 map("n", "<a-J>", ":m .+1<cr>")
 map("n", "<a-k>", ":m .-2<cr>")
@@ -33,8 +38,8 @@ map("n","<leader>t", ":split | resize 16 | terminal<cr>")
 map("t", "<esc>", "<c-\\><c-n>")
 
 vim.api.nvim_create_autocmd(
-  { "TermOpen" },
-  { pattern = {"*"}, command = "startinsert" }
+{ "TermOpen" },
+{ pattern = {"*"}, command = "startinsert" }
 )
 
 -- Disable arrow keys 😅
@@ -46,8 +51,8 @@ map("n", "<right>", "<nop>")
 -- Telescope
 -- see https://github.com/nvim-telescope/telescope.nvim#getting-started
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+map("n", "<leader>ff", builtin.find_files)
+map("n", "<leader>fg", builtin.live_grep)
+map("n", "<leader>fb", builtin.buffers)
+map("n", "<leader>fh", builtin.help_tags)
 
