@@ -1,3 +1,13 @@
+--- globals
+local gitignored = vim.fn["netrw_gitignore#Hide"]()
+vim.g.netrw_banner = 0
+vim.g.netrw_browse_split = 4
+vim.g.netrw_hide = 1
+vim.g.netrw_liststyle = 0
+vim.g.netrw_list_hide = [[^\..*,.*\.lock$,tags,]] .. (gitignored)
+vim.g.netrw_winsize = 24
+
+-- options
 local opt = vim.opt
 opt.autoindent = true -- indent next line same as current
 opt.autoread = true -- auto read changed files

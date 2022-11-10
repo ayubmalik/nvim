@@ -1,16 +1,17 @@
 -- Map space as leader
-
 vim.g.mapleader = " "
 
 -- TODO(ayubm) use vim.keymap.set
-function map(mode, lhs, rhs)
+local function map(mode, lhs, rhs)
   local options = { noremap = true, silent = true }
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- Normal
-map("n", "<f2>", ":set relativenumber!<cr>")
-map("n", "<f3>", ":set hlsearch!<cr>")
+map("n", "<f2>", ":24Lex<cr>")
+map("n", "<f3>", ":set relativenumber!<cr>")
+map("n", "<f4>", ":set hlsearch!<cr>")
+map("n", "<f5>", ":setlocal spell! spelllang=en_GB<cr>")
 map("n", "<c-s>", ":update<cr>")
 map("n", "<a-J>", ":m .+1<cr>")
 map("n", "<a-k>", ":m .-2<cr>")
