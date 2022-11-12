@@ -1,4 +1,4 @@
--- Map shhpace as leader
+-- Map space as leader
 vim.g.mapleader = " "
 
 local function map(mode, lhs, rhs)

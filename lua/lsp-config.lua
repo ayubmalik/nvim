@@ -10,6 +10,11 @@ require("mason-lspconfig").setup({
 })
 
 
+local function map(mode, lhs, rhs)
+  local options = { noremap = true, silent = true }
+  vim.keymap.set(mode, lhs, rhs, options)
+end
+
 local api = vim.api
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -21,27 +26,26 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-  vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, bufopts)
-  vim.keymap.set("n", "[[", vim.diagnostic.goto_prev, bufopts)
-  vim.keymap.set("n", "]]", vim.diagnostic.goto_next, bufopts)
+  map('n', 'gd', vim.lsp.buf.definition)
+  map('n', 'gD', vim.lsp.buf.declaration)
+  map('n', 'gr', vim.lsp.buf.references)
+  map('n', 'gI', vim.lsp.buf.implementation)
+  map('n', 'K', vim.lsp.buf.hover)
+  map('n', '<C-k>', vim.lsp.buf.signature_help)
+  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder)
+  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder)
+  map('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
+  map('n', '<leader>D', vim.lsp.buf.type_definition)
+  map('n', '<leader>ca', vim.lsp.buf.code_action)
+  map('n', '<leader>rn', vim.lsp.buf.rename)
+  map('n', '<leader>f', function() vim.lsp.buf.format { async = true } end)
+  map("n", "<leader>dd", vim.diagnostic.open_float)
+  map("n", "[[", vim.diagnostic.goto_prev)
+  map("n", "]]", vim.diagnostic.goto_next)
 
   if client.name == "gopls" then
-    vim.keymap.set("n", "[[", vim.diagnostic.goto_prev, bufopts)
-    vim.keymap.set("n", "]]", vim.diagnostic.goto_next, bufopts)
+    map("n", "[[", vim.diagnostic.goto_prev)
+    map("n", "]]", vim.diagnostic.goto_next)
   end
 end
 
