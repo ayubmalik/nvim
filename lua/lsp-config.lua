@@ -1,4 +1,4 @@
---LSP config using mason
+-- LSP config using mason
 require("mason").setup()
 
 require("mason-lspconfig").setup({
@@ -6,6 +6,7 @@ require("mason-lspconfig").setup({
     "sumneko_lua",
     "gopls",
     "tsserver",
+    "pyright"
   }
 })
 
@@ -42,11 +43,14 @@ local on_attach = function(client, bufnr)
   map("n", "<leader>dd", vim.diagnostic.open_float)
   map("n", "[[", vim.diagnostic.goto_prev)
   map("n", "]]", vim.diagnostic.goto_next)
+  map("n", "<leader>q", vim.diagnostic.setloclist)
 
   if client.name == "gopls" then
     map("n", "[[", vim.diagnostic.goto_prev)
     map("n", "]]", vim.diagnostic.goto_next)
   end
+
+  vim.diagnostic.config({virtual_text = false})
 end
 
 local lsp_flags = {
@@ -112,6 +116,13 @@ require("lspconfig").sumneko_lua.setup {
 
 -- Typescript LSP config
 require("lspconfig").tsserver.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+
+-- Python LSP configuration
+require("lspconfig").pyright.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
