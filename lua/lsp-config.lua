@@ -3,7 +3,7 @@ require("mason").setup()
 
 require("mason-lspconfig").setup({
   ensure_installed = {
-    "sumneko_lua",
+    "lua_ls",
     "gopls",
     "tsserver",
     "pyright"
@@ -100,7 +100,7 @@ require('lspconfig').gopls.setup {
 }
 
 -- Lua LSP config
-require("lspconfig").sumneko_lua.setup {
+require("lspconfig").lua_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
