@@ -6,9 +6,9 @@ neovim config for krakenflex
 This repo should be cloned to `~/.config/nvim`:
 
 ```
-mkdir ~/.config
+mkdir -p ~/.config
 mv ~/.config/nvim ~/.config/_nvim 2>/dev/null
-
+cd ~/.config
 git clone git@bitbucket.org:ayubmalik-coachusa/nvim.git
 ```
 
