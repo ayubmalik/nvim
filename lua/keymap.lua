@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd(
   { "BufEnter" },
   { group = diffviewgrp, pattern = { "diffview://*" }, command = "nnoremap <buffer> q :DiffviewClose<cr>" }
 )
+
 -- Normal
 map("n", "<f2>", ":24Lex<cr>")
 map("n", "<f3>", ":set relativenumber!<cr>")
@@ -55,4 +56,11 @@ map("n", "<right>", "<nop>")
 --map("n", "<leader>fg", builtin.live_grep)
 --map("n", "<leader>fb", builtin.buffers)
 --map("n", "<leader>fh", builtin.help_tags)
+
+-- FZF Lua
+map("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>")
+map("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>")
+map("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>")
+map("n", "<leader>fg", "<cmd>lua require('fzf-lua').grep()<CR>")
+map("n", "<leader>fl", "<cmd>lua require('fzf-lua').live_grep()<CR>")
 
