@@ -62,5 +62,6 @@ map("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>")
 map("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>")
 map("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>")
 map("n", "<leader>fg", "<cmd>lua require('fzf-lua').grep()<CR>")
+map("n", "<leader>fgs", "<cmd>lua require('fzf-lua').git_status()<CR>")
 map("n", "<leader>fl", "<cmd>lua require('fzf-lua').live_grep()<CR>")
 
