@@ -39,16 +39,12 @@ local on_attach = function(client, bufnr)
   map('n', '<leader>D', vim.lsp.buf.type_definition)
   map('n', '<leader>ca', vim.lsp.buf.code_action)
   map('n', '<leader>rn', vim.lsp.buf.rename)
-  map('n', '<leader>f', function() vim.lsp.buf.format { async = true } end)
+  -- TODO following does not work
+  -- map('n', '<leader>f', function() vim.lsp.buf.format() end)
   map("n", "<leader>dd", vim.diagnostic.open_float)
+  map("n", "<leader>q", vim.diagnostic.setloclist)
   map("n", "[[", vim.diagnostic.goto_prev)
   map("n", "]]", vim.diagnostic.goto_next)
-  map("n", "<leader>q", vim.diagnostic.setloclist)
-
-  if client.name == "gopls" then
-    map("n", "[[", vim.diagnostic.goto_prev)
-    map("n", "]]", vim.diagnostic.goto_next)
-  end
 
   vim.diagnostic.config({virtual_text = false})
 end
