@@ -1,7 +1,8 @@
 vim.g.completopt="menu,menuone,noselect"
 
-local luasnip = require("luasnip")
 local cmp = require("cmp")
+local luasnip = require("luasnip")
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local has_words_before = function()
   local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
