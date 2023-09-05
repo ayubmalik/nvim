@@ -5,48 +5,47 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "gopls",
-    "tsserver",
-    "pyright"
+    -- "pyright",
+    "tsserver"
   }
 })
-
 
 local function map(mode, lhs, rhs)
   local options = { noremap = true, silent = true }
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
-local api = vim.api
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  map('n', 'gd', vim.lsp.buf.definition)
-  map('n', 'gD', vim.lsp.buf.declaration)
-  map('n', 'gr', vim.lsp.buf.references)
-  map('n', 'gI', vim.lsp.buf.implementation)
-  map('n', 'K', vim.lsp.buf.hover)
-  map('n', '<C-k>', vim.lsp.buf.signature_help)
-  map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder)
-  map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder)
-  map('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
-  map('n', '<leader>D', vim.lsp.buf.type_definition)
-  map('n', '<leader>ca', vim.lsp.buf.code_action)
-  map('n', '<leader>rn', vim.lsp.buf.rename)
-  -- TODO following does not work
-  -- map('n', '<leader>f', function() vim.lsp.buf.format() end)
+  map("n", "gd", vim.lsp.buf.definition)
+  map("n", "gD", vim.lsp.buf.declaration)
+  map("n", "gr", vim.lsp.buf.references)
+  map("n", "gI", vim.lsp.buf.implementation)
+  map("n", "K", vim.lsp.buf.hover)
+  map("n", "<C-k>", vim.lsp.buf.signature_help)
+  map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder)
+  map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder)
+  map("n", "<leader>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end)
+  map("n", "<leader>D", vim.lsp.buf.type_definition)
+  map("n", "<leader>ca", vim.lsp.buf.code_action)
+  map("v", "<leader>ca", vim.lsp.buf.range_code_action)
+  map("n", "<leader>rn", vim.lsp.buf.rename)
+  map("n", "<leader>f", function() vim.lsp.buf.formatting({ async = true }) end)
   map("n", "<leader>dd", vim.diagnostic.open_float)
-  map("n", "<leader>q", vim.diagnostic.setloclist)
   map("n", "[[", vim.diagnostic.goto_prev)
   map("n", "]]", vim.diagnostic.goto_next)
+  map("n", "<leader>q", vim.diagnostic.setloclist)
 
-  vim.diagnostic.config({virtual_text = false})
+  vim.diagnostic.config({ virtual_text = false })
 end
 
 local lsp_flags = {
@@ -58,7 +57,7 @@ local lsp_flags = {
 -- Golang LSP config
 function OrgImports(wait_ms)
   local params = vim.lsp.util.make_range_params()
-  params.context = {only = {"source.organizeImports"}}
+  params.context = { only = { "source.organizeImports" } }
   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
   for _, res in pairs(result or {}) do
     for _, r in pairs(res.result or {}) do
@@ -71,12 +70,12 @@ function OrgImports(wait_ms)
   end
 end
 
+local golang_grp = vim.api.nvim_create_augroup("golang", { clear = true })
+vim.api.nvim_create_autocmd({ "BufWritePre" }, { group = golang_grp, pattern = "*.go", command = "lua OrgImports(1000)" })
+vim.api.nvim_create_autocmd({ "BufWritePre" }, { group = golang_grp, pattern = "*.go", command = "lua vim.lsp.buf.formatting_sync()" })
 
-local golang_grp = api.nvim_create_augroup("golang", {clear=true})
-api.nvim_create_autocmd( {"BufWritePre"}, {group = golang_grp, pattern = "*.go", command = "lua OrgImports(1000)"})
-api.nvim_create_autocmd( {"BufWritePre"}, {group = golang_grp, pattern = "*.go", command = "lua vim.lsp.buf.formatting_sync()"})
-
-require('lspconfig').gopls.setup {
+-- gopls setup
+require("lspconfig").gopls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
@@ -102,7 +101,7 @@ require("lspconfig").lua_ls.setup {
   flags = lsp_flags,
 
   settings = {
-    Lua =  {
+    Lua = {
       diagnostics = {
         globals = { "vim" }
       }
@@ -118,9 +117,8 @@ require("lspconfig").tsserver.setup {
 }
 
 -- Python LSP configuration
-require("lspconfig").pyright.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = lsp_flags,
-}
-
+--require("lspconfig").pyright.setup {
+--  capabilities = capabilities,
+--  on_attach = on_attach,
+--  flags = lsp_flags,
+--}

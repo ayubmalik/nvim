@@ -13,11 +13,11 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Normal
-map("n", "<f2>", ":24Lex<cr>")
-map("n", "<f3>", ":set relativenumber!<cr>")
-map("n", "<f4>", ":set hlsearch!<cr>")
-map("n", "<f5>", ":DiffviewOpen<cr>")
-map("n", "<f6>", ":setlocal spell! spelllang=en_GB<cr>")
+--map("n", "<f2>", ":24Lex<cr>") -- netrw explorer disabled using FF
+map("n", "<f2>", ":set relativenumber!<cr>")
+map("n", "<f3>", ":set hlsearch!<cr>")
+map("n", "<f4>", ":DiffviewOpen<cr>")
+map("n", "<f5>", ":setlocal spell! spelllang=en_GB<cr>")
 map("n", "<c-s>", ":update<cr>")
 map("n", "<a-J>", ":m .+1<cr>")
 map("n", "<a-k>", ":m .-2<cr>")
@@ -39,8 +39,8 @@ map("n","<leader>t", ":split | resize 16 | terminal<cr>")
 map("t", "<esc>", "<c-\\><c-n>")
 
 vim.api.nvim_create_autocmd(
-{ "TermOpen" },
-{ pattern = {"*"}, command = "startinsert" }
+  { "TermOpen" },
+  { pattern = {"*"}, command = "startinsert" }
 )
 
 -- Disable arrow keys 😅
@@ -49,19 +49,10 @@ map("n", "<down>", "<nop>")
 map("n", "<left>", "<nop>")
 map("n", "<right>", "<nop>")
 
--- Telescope
--- see https://github.com/nvim-telescope/telescope.nvim#getting-started
---local builtin = require("telescope.builtin")
---map("n", "<leader>ff", builtin.find_files)
---map("n", "<leader>fg", builtin.live_grep)
---map("n", "<leader>fb", builtin.buffers)
---map("n", "<leader>fh", builtin.help_tags)
-
 -- FZF Lua
 map("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>")
 map("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>")
 map("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>")
-map("n", "<leader>fg", "<cmd>lua require('fzf-lua').grep()<CR>")
-map("n", "<leader>fgs", "<cmd>lua require('fzf-lua').git_status()<CR>")
+map("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<CR>")
 map("n", "<leader>fl", "<cmd>lua require('fzf-lua').live_grep()<CR>")
 
