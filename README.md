@@ -206,9 +206,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # start machine specific
-export LOCAL_SCRIPTS=~/projects/coachusa/env/keep/scripts
-export PATH=${PATH}:${LOCAL_SCRIPTS}
-alias cdprojects='cd ~/projects/coachusa'
+alias cdprojects='cd ~/projects'
 # end machine specific
 ```
 
