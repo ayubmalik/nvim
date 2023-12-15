@@ -30,9 +30,9 @@ Should install automatically
 
 Miscellaneous commands to set up a new machine/account.
 
-# Golang
+## Golang
 
-Install golang
+Install go
 
 ```
 cd ~/Downloads
@@ -40,7 +40,7 @@ curl -L https://go.dev/dl/go1.21.5.linux-amd64.tar.gz -o go1.21.5.linux-amd64.ta
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
 ```
 
-## ZSH
+## Oh My Zsh
 
 ```
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
