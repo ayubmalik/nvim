@@ -20,9 +20,13 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 # new window
 nvm ls-remote
-nvm install v18.17.0
+nvm install 20
 ```
 
+# LazyVIM
+Should install automatically
+
+~~~
 # Packer
 
 It is safer to install packer manually
@@ -36,4 +40,6 @@ Once installed, restart nvim and then:
 ```
 :PackerClean | PackerInstall
 ```
+~~~
+
 
