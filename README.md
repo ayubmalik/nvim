@@ -9,7 +9,7 @@ This repo should be cloned to `~/.config/nvim`:
 mkdir -p ~/.config
 mv ~/.config/nvim ~/.config/_nvim 2>/dev/null
 cd ~/.config
-git clone git@bitbucket.org:ayubmalik/nvim.git
+git clone git@github.com:ayubmalik/nvim.git
 ```
 
 # NPM
@@ -26,20 +26,11 @@ nvm install 20
 # LazyVIM
 Should install automatically
 
-~~~
-# Packer
+# Misc
 
-It is safer to install packer manually
-
-```
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer._nvim
-```
-Once installed, restart nvim and then:
+## ZSH
 
 ```
-:PackerClean | PackerInstall
+sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
-~~~
-
 
