@@ -1,5 +1,5 @@
 # nvim
-neovim config for krakenflex
+neovim config for ayubmalik
 
 # Install
 
@@ -28,9 +28,22 @@ Should install automatically
 
 # Misc
 
+Miscellaneous commands to set up a new machine/account.
+
+# Golang
+
+Install golang
+
+```
+cd ~/Downloads
+curl -L https://go.dev/dl/go1.21.5.linux-amd64.tar.gz -o go1.21.5.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz
+```
+
 ## ZSH
 
 ```
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
+
 
