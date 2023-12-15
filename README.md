@@ -44,6 +44,19 @@ Miscellaneous commands to set up a new machine/account.
 ```
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
+## Nerd Fonts 
+
+```
+mkdir -p ~/.local/share/fonts
+pushd ~/.local/share/fonts
+curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/DejaVuSansMono.zip -O
+unzip DejaVuSansMono.zip
+rm DejaVuSansMono.zip
+fc-cache -fv
+popd
+```
+
+
 
 ## .zshrc
 
