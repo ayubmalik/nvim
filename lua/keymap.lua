@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Normal
---map("n", "<f2>", ":24Lex<cr>") -- netrw explorer disabled using FF
+--map("n", "<f2>", ":24Lex<cr>")
 map("n", "<f2>", ":set relativenumber!<cr>")
 map("n", "<f3>", ":set hlsearch!<cr>")
 map("n", "<f4>", ":DiffviewOpen<cr>")
@@ -44,6 +44,7 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Disable arrow keys 😅
+vim.opt.mouse=
 map("n", "<up>", "<nop>")
 map("n", "<down>", "<nop>")
 map("n", "<left>", "<nop>")
@@ -56,6 +57,10 @@ map("", "<up>", "<nop>")
 map("", "<down>", "<nop>")
 map("", "<left>", "<nop>")
 map("", "<right>", "<nop>")
+
+
+
+
 
 -- FZF Lua
 map("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>")

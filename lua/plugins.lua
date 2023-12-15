@@ -1,60 +1,47 @@
 local fn = vim.fn
 
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
+-- Automatically install lazy.vim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
     "git",
     "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
-  --vim.cmd [[packadd packer.nvim]]
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
+vim.opt.rtp:prepend(lazypath)
 
 -- Install your plugins here
-return packer.startup(function(use)
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "folke/tokyonight.nvim"
+require("lazy").setup({
 
-  use { "nvim-lualine/lualine.nvim", requires = "nvim-tree/nvim-web-devicons" }
-  use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
+  "folke/tokyonight.nvim",
+  { "nvim-lualine/lualine.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
+  { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
 
   -- fzf
-  use { "junegunn/fzf", run = "./install --bin" }
-  use { "ibhagwan/fzf-lua", requires = "nvim-tree/nvim-web-devicons"}
+  { "junegunn/fzf", build = "./install --bin" },
+  { "ibhagwan/fzf-lua", dependencies = "nvim-tree/nvim-web-devicons"},
 
   -- lsp
-  use "neovim/nvim-lspconfig"
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
+  "neovim/nvim-lspconfig",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
 
   -- completion
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-nvim-lua"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lsp-document-symbol"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-cmdline"
-  use "saadparwaiz1/cmp_luasnip"
+  "hrsh7th/nvim-cmp",
+  "hrsh7th/cmp-nvim-lua",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-nvim-lsp-document-symbol",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "saadparwaiz1/cmp_luasnip",
 
   -- snippets
-  use { "L3MON4D3/LuaSnip", requires = "rafamadriz/friendly-snippets" }
+  { "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" }
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
+})
 

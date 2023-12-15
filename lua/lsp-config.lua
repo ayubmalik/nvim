@@ -15,8 +15,7 @@ local function map(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
--- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
@@ -40,9 +39,7 @@ local on_attach = function(client, bufnr)
   map("n", "<leader>ca", vim.lsp.buf.code_action)
   map("v", "<leader>ca", vim.lsp.buf.range_code_action)
   map("n", "<leader>rn", vim.lsp.buf.rename)
-  map("n", "<leader>f", function()
-    vim.lsp.buf.formatting({ async = true })
-  end)
+  map("n", "<leader>f", function() vim.lsp.buf.formatting({ async = true }) end)
   map("n", "<leader>dd", vim.diagnostic.open_float)
   map("n", "[[", vim.diagnostic.goto_prev)
   map("n", "]]", vim.diagnostic.goto_next)
@@ -75,8 +72,7 @@ end
 
 local golang_grp = vim.api.nvim_create_augroup("golang", { clear = true })
 vim.api.nvim_create_autocmd({ "BufWritePre" }, { group = golang_grp, pattern = "*.go", command = "lua OrgImports(1000)" })
-vim.api.nvim_create_autocmd({ "BufWritePre" },
-  { group = golang_grp, pattern = "*.go", command = "lua vim.lsp.buf.formatting_sync()" })
+vim.api.nvim_create_autocmd({ "BufWritePre" }, { group = golang_grp, pattern = "*.go", command = "lua vim.lsp.buf.formatting_sync()" })
 
 -- gopls setup
 require("lspconfig").gopls.setup {
