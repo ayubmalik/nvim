@@ -11,7 +11,7 @@ end
 map("n", "<f2>", ":set relativenumber!<cr>")
 map("n", "<f3>", ":set hlsearch!<cr>")
 -- map("n", "<f4>", ":DiffviewOpen<cr>")
-map("n", "<f5>", ":setlocal spell! spelllang=en_GB<cr>")
+map("n", "<f5>", ":setlocal spell! spelllang=en_gb<cr>")
 -- map("n", "<c-s>", ":update<cr>")
 map("n", "<a-J>", ":m .+1<cr>")
 map("n", "<a-k>", ":m .-2<cr>")
