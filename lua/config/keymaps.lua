@@ -9,23 +9,23 @@ end
 
 -- Normal
 map("n", "<f2>", ":set relativenumber!<cr>")
-map("n", "<f3>", ":set hlsearch!<cr>")
+-- map("n", "<f3>", ":set hlsearch!<cr>")
 -- map("n", "<f4>", ":DiffviewOpen<cr>")
 map("n", "<f5>", ":setlocal spell! spelllang=en_gb<cr>")
 -- map("n", "<c-s>", ":update<cr>")
-map("n", "<a-J>", ":m .+1<cr>")
-map("n", "<a-k>", ":m .-2<cr>")
+-- map("n", "<a-j>", ":m .+1<cr>")
+-- map("n", "<a-k>", ":m .-2<cr>")
 
 -- Insert
 map("i", "kj", "<esc>")
-map("i", "<c-s>", "<esc>:update<cr>") -- exit insert
+-- map("i", "<c-s>", "<esc>:update<cr>") -- exit insert
 map("i", "<c-d>", "<esc>lxi") -- delete a char
 
 -- Visual
 map("v", "<", "<gv")
 map("v", ">", ">gv")
-map("v", "<a-j>", ":m '>+1<cr>gv=gv")
-map("v", "<a-k>", ":m '<-2<cr>gv=gv")
+-- map("v", "<a-j>", ":m '>+1<cr>gv=gv")
+-- map("v", "<a-k>", ":m '<-2<cr>gv=gv")
 
 -- Disable arrow keys 😅
 vim.opt.mouse = map("n", "<up>", "<nop>")
