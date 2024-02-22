@@ -2,9 +2,18 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+local Util = require("lazyvim.util")
+
 local function map(mode, lhs, rhs)
   local options = { noremap = true, silent = true }
   vim.keymap.set(mode, lhs, rhs, options)
+end
+
+-- copied from above URL
+if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
+  vim.keymap.set("n", "<leader>uh", function()
+    Util.toggle.inlay_hints()
+  end, { desc = "Toggle Inlay Hints" })
 end
 
 -- Normal
