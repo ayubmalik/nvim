@@ -3,4 +3,6 @@ return {
   { "catppuccin/nvim", enabled = false },
   { "ggandor/flit.nvim", enabled = false },
   { "echasnovski/mini.files", enabled = false },
+  { "goolord/alpha-nvim", enabled = false },
+  { "catppuccin/nvim", enabled = false },
 }
