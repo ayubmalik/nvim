@@ -5,4 +5,5 @@ return {
   { "echasnovski/mini.files", enabled = false },
   { "goolord/alpha-nvim", enabled = false },
   { "catppuccin/nvim", enabled = false },
+  { "nvim-telescope/telescope-fzf-native.nvim ", enabled = false },
 }
