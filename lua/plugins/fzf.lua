@@ -8,7 +8,9 @@ return {
     config = function()
       require('fzf-lua').setup {
         defaults = {
-          file_icons = true,
+          file_icons = false,
+          git_icons = false,
+          color_icons = false,
         },
       }
 
