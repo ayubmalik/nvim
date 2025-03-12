@@ -2,7 +2,7 @@
 
 ## Neovim Reset
 
-Danger!
+Danger! This deletes all neovim config.
 
 ```shell
 rm -rf ~/.local/share/nvim

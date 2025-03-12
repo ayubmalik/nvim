@@ -33,6 +33,9 @@ local function map(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
+-- toggle relative line numbers
+map('n', '<F2>', ':set relativenumber!<cr>')
+
 -- exit insert on kj
 map('i', 'kj', '<esc>')
 
@@ -67,7 +70,5 @@ map('', '<down>', '<nop>')
 map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
--- toggle relative line numbers
-map('n', '<F2>', ':set relativenumber!<cr>')
+-- Oil plugin
 map('n', '-', '<cmd>Oil<cr>')
-
