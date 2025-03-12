@@ -14,18 +14,17 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-
-require("lazy").setup({
+require('lazy').setup {
   spec = {
     -- import your plugins
-    { import = "plugins" },
+    { import = 'plugins' },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "tokyonight-night" } },
+  -- install = { colorscheme = { "tokyonight-night" } },
   -- automatically check for plugin updates
   checker = { enabled = false },
-})
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
