@@ -16,3 +16,6 @@ rm -rf ~/.cache/nvim
 sudo apt install make gcc ripgrep unzip git xclip neovim
 ```
 
+## Guidelines
+Keep plugins in one place, i.e. `lua/plugins.lua`
+
