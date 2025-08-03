@@ -1,7 +1,3 @@
-require 'options'
-require 'keymaps'
-require 'autocmds'
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -25,6 +21,10 @@ require('lazy').setup {
   -- automatically check for plugin updates
   checker = { enabled = false },
 }
+
+require 'options'
+require 'keymaps'
+require 'autocmds'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
