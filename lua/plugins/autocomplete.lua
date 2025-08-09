@@ -11,7 +11,12 @@ return {
 
 		completion = {
 			documentation = { auto_show = false },
+			list = {
+				max_items = 100
+			},
 			menu = {
+				min_width = 30,
+				max_height = 15,
 				draw = {
 					columns = {
 						{ "label",     "label_description", gap = 1 },
