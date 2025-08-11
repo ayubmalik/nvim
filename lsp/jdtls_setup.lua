@@ -1,34 +1,10 @@
--- setup LSP see :help lsp
-vim.lsp.enable 'luals'
-vim.lsp.enable 'gopls'
+local M = {}
 
--- TODO: apparently blink.cmp does not need the following
--- 	callback = function(ev)
--- 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
--- 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
--- 			vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
--- 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
--- 			vim.keymap.set('i', '<C-Space>', function()
--- 				vim.lsp.completion.get()
--- 			end)
--- 		end
--- 	end,
--- })
---
-
--- Java config is slightly different
--- We don't want to call vim.lsp.enable.
--- Rather attach to LSP on filetype
-
-local function jdtls_setup()
+function M:setup()
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
   local workspace_dir = '/tmp/jdtls/data/' .. project_name
-  local jdtls_dir = '/home/ayub-coachusa/.local/bin/jdtls'
-
-  vim.opt_local.shiftwidth = 4
-  vim.opt_local.tabstop = 4
-  vim.opt_local.softtabstop = 4
-  vim.opt_local.expandtab = true
+  local jdtls_dir = vim.env.HOME .. '/.local/bin/jdtls'
+  local java_debug_path = vim.env.HOME .. './.local/bin/java-debug'
 
   local config = {
     -- The command that starts the language server
@@ -54,7 +30,7 @@ local function jdtls_setup()
 
       -- 💀
       '-jar',
-      jdtls_dir .. '/plugins/org.eclipse.equinox.launcher_1.7.0.v20250519-0528.jar',
+      jdtls_dir .. '/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar',
       -- Must point to the                                                     Change this to
       -- eclipse.jdt.ls installation                                           the actual version
 
@@ -70,18 +46,72 @@ local function jdtls_setup()
       workspace_dir,
     },
 
+    -- required for debug
+    on_attach = function(client, bufnr)
+      require('jdtls').setup_dap { hotcodereplace = 'auto' }
+      require('jdtls.dap').setup_dap_main_class_configs()
+      require('jdtls').add_commands()
+    end,
+
     -- 💀
     -- This is the default if not provided, you can remove it. Or adjust as needed.
     -- One dedicated LSP server & client will be started per unique root_dir
-    -- root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew" }),
+    root_dir = require('jdtls.setup').find_root { '.git', 'mvnw', 'gradlew' },
 
     -- Here you can configure eclipse.jdt.ls specific settings
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
     -- for a list of options
-    settings = {
-      java = {},
-    },
 
+    settings = {
+      java = {
+        eclipse = {
+          downloadSources = true,
+        },
+        configuration = {
+          updateBuildConfiguration = 'interactive',
+        },
+        maven = {
+          downloadSources = true,
+        },
+        format = {
+          enabled = true,
+        },
+        saveActions = {
+          organizeImports = true,
+        },
+        completion = {
+          favoriteStaticMembers = {
+            'org.junit.jupiter.api.Assertions.*',
+            'org.mockito.Mockito.*',
+            'java.util.Objects.requireNonNull',
+          },
+          importOrder = {
+            'java',
+            'javax',
+            'com',
+            'org',
+          },
+        },
+        implementationsCodeLens = {
+          enabled = true,
+        },
+        referencesCodeLens = {
+          enabled = true,
+        },
+        references = {
+          includeDecompiledSources = true,
+        },
+        signatureHelp = {
+          enabled = true,
+        },
+        sources = {
+          organizeImports = {
+            starThreshold = 99,
+            staticStarThreshold = 99,
+          },
+        },
+      },
+    },
     -- Language server `initializationOptions`
     -- You need to extend the `bundles` with paths to jar files
     -- if you want to use additional eclipse.jdt.ls plugins.
@@ -92,24 +122,13 @@ local function jdtls_setup()
     init_options = {
       bundles = {
         vim.fn.glob('/home/ayub-coachusa/.local/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.53.2.jar', 1),
+        -- Optionally add test runner support
+        -- vim.fn.glob("/path/to/vscode-java-test/server/*.jar", 1)
       },
     },
   }
+
   -- This starts a new client & server,
   -- or attaches to an existing client & server depending on the `root_dir`.
   require('jdtls').start_or_attach(config)
 end
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'java',
-  callback = function(args)
-    jdtls_setup()
-  end,
-})
-
-vim.diagnostic.config {
-  virtual_lines = false,
-  -- virtual_lines = {
-  -- 	current_line = true,
-  -- },
-}
