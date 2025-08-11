@@ -32,7 +32,7 @@ return {
         desc = 'Debug: Set Breakpoint',
       },
       -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-      { '<F7>', dapui.toggle, desc = 'Debug: See last session result.' },
+      { '<leader>du', dapui.toggle, desc = 'Debug: See last session result.' },
       unpack(keys),
     }
   end,
@@ -49,17 +49,17 @@ return {
       controls = {
         element = 'repl',
         enabled = true,
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
-        },
+        -- icons = {
+        --   pause = '⏸',
+        --   play = '▶',
+        --   step_into = '⏎',
+        --   step_over = '⏭',
+        --   step_out = '⏮',
+        --   step_back = 'b',
+        --   run_last = '▶▶',
+        --   terminate = '⏹',
+        --   disconnect = '⏏',
+        -- },
       },
       element_mappings = {},
       expand_lines = true,

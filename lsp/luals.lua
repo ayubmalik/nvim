@@ -23,6 +23,9 @@ vim.lsp.config['luals'] = {
         checkThirdParty = false,
       },
       diagnostics = {
+        disable = {
+          'missing-fields',
+        },
         globals = {
           'vim',
         },
