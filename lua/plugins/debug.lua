@@ -46,8 +46,9 @@ return {
       -- Set icons to characters that are more likely to work in every terminal.
       --    Feel free to remove or use ones that you like more! :)
       --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
+        element = 'repl',
+        enabled = true,
         icons = {
           pause = '⏸',
           play = '▶',
@@ -60,6 +61,67 @@ return {
           disconnect = '⏏',
         },
       },
+      element_mappings = {},
+      expand_lines = true,
+      floating = {
+        border = 'single',
+        mappings = {
+          close = { 'q', '<Esc>' },
+        },
+      },
+      force_buffers = true,
+      icons = {
+        expanded = '▾',
+        collapsed = '▸',
+        current_frame = '*',
+      },
+      layouts = {
+        {
+          elements = {
+            {
+              id = 'scopes',
+              size = 0.25,
+            },
+            {
+              id = 'breakpoints',
+              size = 0.25,
+            },
+            {
+              id = 'stacks',
+              size = 0.25,
+            },
+            {
+              id = 'watches',
+              size = 0.25,
+            },
+          },
+          position = 'left',
+          size = 40,
+        },
+        {
+          elements = { {
+            id = 'console',
+            size = 0.7,
+          }, {
+            id = 'repl',
+            size = 0.3,
+          } },
+          position = 'bottom',
+          size = 10,
+        },
+      },
+      mappings = {
+        edit = 'e',
+        expand = { '<CR>', '<2-LeftMouse>' },
+        open = 'o',
+        remove = 'd',
+        repl = 'r',
+        toggle = 't',
+      },
+      render = {
+        indent = 1,
+        max_value_lines = 100,
+      },
     }
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
@@ -71,7 +133,7 @@ return {
           name = 'Debug Launch (2GB)',
           type = 'java',
           request = 'launch',
-          vmArgs = '' .. '-Xmx2g ',
+          vmArgs = '-Xmx2g',
         },
       },
     }
