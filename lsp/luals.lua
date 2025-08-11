@@ -16,7 +16,10 @@ vim.lsp.config['luals'] = {
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files and plugins
-				library = { vim.env.VIMRUNTIME },
+				library = {
+					vim.env.VIMRUNTIME,
+					vim.env.XDG_DATA_HOME .. '/nvim/lazy'
+				},
 				checkThirdParty = false,
 			},
 			diagnostics = {
