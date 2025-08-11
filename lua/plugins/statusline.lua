@@ -1,7 +1,7 @@
 -- [[ lualine for status line ]]
 return {
-	'nvim-lualine/lualine.nvim',
-	enabled = true,
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
-	opts = {}
+  'nvim-lualine/lualine.nvim',
+  enabled = true,
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  opts = {},
 }

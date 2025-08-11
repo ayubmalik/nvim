@@ -2,8 +2,8 @@
 -- See :help vim.keymap.set()
 
 local function map(mode, lhs, rhs, description)
-	local options = { noremap = true, silent = true, desc = description }
-	vim.keymap.set(mode, lhs, rhs, options)
+  local options = { noremap = true, silent = true, desc = description }
+  vim.keymap.set(mode, lhs, rhs, options)
 end
 
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
