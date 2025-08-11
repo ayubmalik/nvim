@@ -1,17 +1,19 @@
 local M = {}
 
 function M:setup()
+  local home_dir = vim.env.HOME
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-  local workspace_dir = '/tmp/jdtls/data/' .. project_name
-  local jdtls_dir = vim.env.HOME .. '/.local/bin/jdtls'
-  local java_debug_path = vim.env.HOME .. './.local/bin/java-debug'
+  local jdtls_workpace_dir = '/tmp/jdtls/data/' .. project_name
+  local jdtls_dir = home_dir .. '/.local/bin/jdtls'
+  local java_debug_dir = home_dir .. '/.local/bin/java-debug'
+  local jdtls = require 'jdtls'
 
   local config = {
     -- The command that starts the language server
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     cmd = {
 
-      -- 💀
+      -- CHANGE_ME:
       '/home/ayub-coachusa/.sdkman/candidates/java/21.0.5-amzn/bin/java', -- or '/path/to/java17_or_newer/bin/java'
       -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
@@ -21,39 +23,39 @@ function M:setup()
       '-Dlog.protocol=true',
       '-Dlog.level=ALL',
       '-Xms1g',
-      '-Xmx1g',
+      '-Xmx2g',
       '--add-modules=ALL-SYSTEM',
       '--add-opens',
       'java.base/java.util=ALL-UNNAMED',
       '--add-opens',
       'java.base/java.lang=ALL-UNNAMED',
 
-      -- 💀
+      -- CHANGE_ME:
       '-jar',
       jdtls_dir .. '/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar',
       -- Must point to the                                                     Change this to
       -- eclipse.jdt.ls installation                                           the actual version
 
-      -- 💀
+      -- CHANGE_ME:
       '-configuration',
       jdtls_dir .. '/config_linux',
       -- Must point to the                      Change to one of `linux`, `win` or `mac`
       -- eclipse.jdt.ls installation            Depending on your system.
 
-      -- 💀
+      -- CHANGE_ME:
       -- See `data directory configuration` section in the README
       '-data',
-      workspace_dir,
+      jdtls_workpace_dir,
     },
 
     -- required for debug
     on_attach = function(client, bufnr)
-      require('jdtls').setup_dap { hotcodereplace = 'auto' }
+      jdtls.setup_dap { hotcodereplace = 'auto' }
       require('jdtls.dap').setup_dap_main_class_configs()
-      require('jdtls').add_commands()
+      jdtls.add_commands()
     end,
 
-    -- 💀
+    -- CHANGE_ME:
     -- This is the default if not provided, you can remove it. Or adjust as needed.
     -- One dedicated LSP server & client will be started per unique root_dir
     root_dir = require('jdtls.setup').find_root { '.git', 'mvnw', 'gradlew' },
@@ -121,7 +123,7 @@ function M:setup()
     -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
     init_options = {
       bundles = {
-        vim.fn.glob('/home/ayub-coachusa/.local/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.53.2.jar', 1),
+        vim.fn.glob(java_debug_dir .. '/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.53.2.jar', true),
         -- Optionally add test runner support
         -- vim.fn.glob("/path/to/vscode-java-test/server/*.jar", 1)
       },
@@ -130,5 +132,5 @@ function M:setup()
 
   -- This starts a new client & server,
   -- or attaches to an existing client & server depending on the `root_dir`.
-  require('jdtls').start_or_attach(config)
+  jdtls.start_or_attach(config)
 end
