@@ -158,7 +158,7 @@ local function map(mode, lhs, rhs, description)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
-map('v', 'grm', '<cmd>lua require("jdtls").extract_method(true)<CR>', 'extract method')
+map('x', 'grm', '<cmd>lua require("jdtls").extract_method(true)<CR>', 'extract method')
 map('n', 'gro', '<cmd>lua require("jdtls").organize_imports()<CR>', 'organise imports')
 map('n', 'grv', '<cmd>lua require("jdtls").extract_variable()<CR>', 'extract variable')
 map('v', 'grv', '<cmd>lua require("jdtls").extract_variable(true)<CR>', 'extract variable')
