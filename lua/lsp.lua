@@ -152,3 +152,15 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.diagnostic.config {
   virtual_lines = false,
 }
+
+local function map(mode, lhs, rhs, description)
+  local options = { noremap = true, silent = true, desc = description }
+  vim.keymap.set(mode, lhs, rhs, options)
+end
+
+map('v', 'grm', '<cmd>lua require("jdtls").extract_method(true)<CR>', 'extract method')
+map('n', 'gro', '<cmd>lua require("jdtls").organize_imports()<CR>', 'organise imports')
+map('n', 'grv', '<cmd>lua require("jdtls").extract_variable()<CR>', 'extract variable')
+map('v', 'grv', '<cmd>lua require("jdtls").extract_variable(true)<CR>', 'extract variable')
+map('n', 'grc', '<cmd>lua require("jdtls").extract_constant()<CR>', 'extract constant')
+map('v', 'grc', '<cmd>lua require("jdtls").extract_constant(true)<CR>', 'extract constant')
