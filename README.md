@@ -19,5 +19,8 @@ sudo apt install make gcc ripgrep unzip git xclip
 
 ## Neovim custom install
 
+blah
+blah
+
 Read [Install Page](https://github.com/neovim/neovim/blob/master/INSTALL.md)
 
