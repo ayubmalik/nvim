@@ -1,7 +1,19 @@
 -- [[ start git signs ]]
 return {
   {
-    'NeogitOrg/neogit',
+    'sindrets/diffview.nvim',
+    enabled = true,
+  },
+  {
+    'kdheepak/lazygit.nvim',
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
     dependencies = {
       'nvim-lua/plenary.nvim', -- required
       'sindrets/diffview.nvim', -- optional - Diff integration
