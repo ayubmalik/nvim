@@ -8,14 +8,10 @@ end
 
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<leader>q', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
--- map('n', '<leader>Q', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
---
 map('n', '<F2>', ':set relativenumber!<cr>', 'toggle relative line numbers')
 map('n', '<F3>', ':set list!<cr>', 'toggle whitespace')
 map('i', 'kj', '<esc>', 'exit insert on kj')
 map('i', '<c-d>', '<esc>lxi', 'delete char from right')
--- map('n', '<c-s>', ':update<cr>', 'save file on ctrl-s')
---map('n', '<leader>w', ':update<cr>', 'update file (write)') -- mapped to widen selection
 
 map('v', '<', '<gv', 'visual indent')
 map('v', '>', '>gv', 'visual indent')
