@@ -34,7 +34,6 @@ return {
 		formatters_by_ft = {
 			lua = { 'stylua' },
 			go = { 'gofmt' },
-			java = { 'google-java-format' },
 			-- cpp = { 'clang_format' },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
