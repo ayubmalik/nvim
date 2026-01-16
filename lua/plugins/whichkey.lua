@@ -1,7 +1,7 @@
 -- [[ start which key ]]
 return {
   'folke/which-key.nvim',
-  event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+  event = 'VeryLazy',
   opts = {
     icons = {
       -- keys = {},
@@ -14,7 +14,6 @@ return {
     { '<leader>d', group = '[D]ocument' },
     { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
     { '<leader>s', group = '[S]earch' },
-    { '<leader>t', group = '[T]est' },
     { '<leader>w', group = '[W]orkspace' },
   },
 }

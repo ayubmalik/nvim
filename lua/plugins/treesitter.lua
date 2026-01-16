@@ -8,7 +8,6 @@ return {
     configs.setup {
       ensure_installed = {
         'go',
-        'java',
         'lua',
         'vim',
         'vimdoc',
