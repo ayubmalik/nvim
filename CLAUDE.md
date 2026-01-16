@@ -25,7 +25,7 @@ This is a Neovim configuration built from scratch using modern Neovim features (
 
 **Plugin Management**: lazy.nvim auto-loads all files in `lua/plugins/` directory. Each plugin file returns a lazy.nvim spec table.
 
-**Mason Integration**: Mason (lua/plugins/mason.lua) handles automatic LSP server installation for lua_ls and gopls, but the actual LSP configuration uses native vim.lsp APIs.
+**Two-Part LSP Setup**: Mason downloads/installs LSP server binaries (gopls, lua-language-server), while vim.lsp APIs configure and run them. This avoids the nvim-lspconfig plugin in favor of Neovim's native LSP support.
 
 **Minimal Dependencies**: Intentionally avoids over-engineering. No unnecessary abstractions, helpers, or feature flags. Arrow keys are disabled to enforce hjkl navigation.
 
