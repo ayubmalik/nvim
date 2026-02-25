@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture Overview
 
-This is a Neovim configuration built from scratch using modern Neovim features (0.10+) with a minimal, intentional plugin selection. The configuration is structured modularly using Lua and leverages Neovim's built-in LSP client with native LSP configuration.
+This is a Neovim configuration built from scratch using modern Neovim features (0.11+) with a minimal, intentional plugin selection. The configuration is structured modularly using Lua and leverages Neovim's built-in LSP client with native LSP configuration.
 
 ### Core Structure
 
@@ -52,17 +52,36 @@ vim.lsp.config['server-name'] = {
 }
 ```
 
-### LSP Keybindings (set on LspAttach)
+### LSP Keybindings
+
+Custom (set on LspAttach in `lua/lsp.lua`):
 
 - `gd`: Go to definition
 - `gD`: Go to declaration
-- `gr`: Show references
-- `gi`: Go to implementation
 - `K`: Hover documentation
-- `<leader>rn`: Rename symbol
-- `<leader>ca`: Code actions
-- `gO`: Document symbols
 - `gW`: Workspace symbols
+
+Neovim 0.11 defaults (active when LSP is attached):
+
+- `grr`: Show references
+- `gri`: Go to implementation
+- `grn`: Rename symbol
+- `gra`: Code actions (normal + visual)
+- `gO`: Document symbols
+- `<C-s>` (insert): Signature help
+
+### Inlay Hints
+
+Enabled per-buffer on LspAttach via `vim.lsp.inlay_hint.enable()`. Toggle
+with `:lua vim.lsp.inlay_hint.enable(false, { bufnr = 0 })`.
+
+### Diagnostics
+
+Configured in `lua/lsp.lua` with `vim.diagnostic.config`:
+
+- `virtual_lines = { current_line = true }`: Shows diagnostic detail inline
+  below the current line only
+- `virtual_text = false`: Disabled to avoid duplication
 
 ## Code Formatting
 
@@ -83,7 +102,7 @@ Filetype settings are in `after/ftplugin/<filetype>.lua`:
 - **Go**: Uses tabs (not spaces), shiftwidth=4, tabstop=4
 - **Lua**: 2-space indentation
 - **TypeScript/JavaScript React**: 2-space indentation
-- **YAML**: 2-space indentation
+- **YAML**: 4-space indentation
 
 When adding filetype settings, create a new file in `after/ftplugin/` named after the filetype.
 
@@ -125,7 +144,7 @@ Syntax highlighting and incremental selection:
 - `<Enter>`: Expand selection
 - `<Backspace>`: Shrink selection
 
-Installed parsers: go, java, lua, vim, vimdoc, query, typescript, javascript, html
+Managed parsers: go, typescript, javascript, html. Bundled by Neovim 0.11: lua, vim, vimdoc, query.
 
 ## Global Keybindings
 
