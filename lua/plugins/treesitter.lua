@@ -11,6 +11,8 @@ return {
         'go',
         'typescript',
         'javascript',
+        'tsx',
+        'css',
         'html',
       },
       auto_install = true,

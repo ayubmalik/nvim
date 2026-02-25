@@ -1,6 +1,8 @@
 -- setup LSP see :help lsp
 vim.lsp.enable 'luals'
 vim.lsp.enable 'gopls'
+vim.lsp.enable 'ts_ls'
+vim.lsp.enable 'tailwindcss'
 
 -- Setup LSP keymaps
 -- Note: grn (rename), gra (code action), grr (references), gri (implementation),
