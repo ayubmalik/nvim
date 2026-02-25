@@ -35,6 +35,3 @@ map('', '<left>', '<nop>', 'disable arrow keys')
 map('', '<right>', '<nop>', 'disable arrow keys')
 map('n', '-', '<cmd>Oil<cr>', 'oil plugin')
 
--- this should work by default but does not unless added
-map('n', 'gO', vim.lsp.buf.document_symbol, 'document symbols')
-map('n', 'gW', vim.lsp.buf.workspace_symbol, 'workspace symbols')
