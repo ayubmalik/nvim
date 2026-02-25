@@ -12,9 +12,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gW', vim.lsp.buf.workspace_symbol, opts)
+    vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
   end,
 })
 
 vim.diagnostic.config {
-  virtual_lines = false,
+  virtual_lines = { current_line = true },
+  virtual_text = false,
 }
