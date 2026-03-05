@@ -52,5 +52,16 @@ return {
 			bash = { "shfmt" },
 
 		},
+		-- the shell fmt params are cribbed from google style guide
+		-- https://google.github.io/styleguide/shellguide.html
+		formatters = {
+			shfmt = {
+				prepend_args = { "-i", "2", "-ci" },
+				-- -i 2  : indent with 2 spaces
+				-- -ci   : indent switch cases
+				-- -bn   : binary ops like && and | start a new line
+				-- -sr   : redirect operators are followed by a space
+			},
+		},
 	},
 }
