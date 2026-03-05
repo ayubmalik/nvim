@@ -47,6 +47,10 @@ return {
 			json = { "prettier" },
 			yaml = { "prettier" },
 			markdown = { "prettier" },
+			sh = { "shfmt" },
+			zsh = { "shfmt" },
+			bash = { "shfmt" },
+
 		},
 	},
 }
