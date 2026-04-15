@@ -12,7 +12,7 @@ map('n', '<F2>', ':set relativenumber!<cr>', 'toggle relative line numbers')
 map('n', '<F3>', ':set list!<cr>', 'toggle whitespace')
 map('n', '<F4>', function()
   print('F4 test ' .. os.date '%I:%M %p')
-end, 'say hello with time')
+end, 'test function call')
 map('i', 'kj', '<esc>', 'exit insert on kj')
 map('i', '<c-d>', '<esc>lxi', 'delete char from right')
 
