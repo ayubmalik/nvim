@@ -16,6 +16,8 @@ vim.pack.add {
   -- lualine
   { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
   { src = 'https://github.com/nvim-lualine/lualine.nvim' },
+  -- which-key
+  { src = 'https://github.com/folke/which-key.nvim' },
 }
 
 -- tokyonight
@@ -49,6 +51,17 @@ vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = 'Find buffers' })
 
 -- mason
 require('mason').setup()
+
+-- which-key
+require('which-key').setup {
+  spec = {
+    { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+    { '<leader>d', group = '[D]ocument' },
+    { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+    { '<leader>s', group = '[S]earch' },
+    { '<leader>w', group = '[W]orkspace' },
+  },
+}
 
 -- lualine
 require('lualine').setup {
