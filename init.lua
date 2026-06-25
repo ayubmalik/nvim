@@ -9,4 +9,3 @@ require 'plugins'
 require 'lsp'
 require 'autocmds'
 -- require 'lazyvim'
---
