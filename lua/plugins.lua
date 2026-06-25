@@ -51,7 +51,19 @@ vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = 'Find buffers' })
 require('mason').setup()
 
 -- lualine
-require('lualine').setup()
+require('lualine').setup {
+  options = {
+    globalstatus = true,
+  },
+  sections = {
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch', 'diff' },
+    lualine_c = { 'filename' },
+    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'progress' },
+    lualine_z = { 'location' },
+  },
+}
 
 -- conform
 require('conform').setup {

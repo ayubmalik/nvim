@@ -54,6 +54,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 7
 
 vim.opt.winborder = 'rounded'
+vim.opt.laststatus = 3
 
 -- Completion popup
 vim.opt.completeopt = { 'menuone', 'noselect', 'popup', 'fuzzy' }
