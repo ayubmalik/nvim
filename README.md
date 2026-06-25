@@ -44,11 +44,12 @@ Or download the latest release from https://github.com/LuaLS/lua-language-server
 - diffview, lazygit, oil (added but not enabled)
 - autocmds, LSP (lua_ls, gopls, ts_ls, tailwindcss)
 - treesitter + treesitter-textobjects (new API — no nvim-treesitter.configs)
+- autopairs (nvim-autopairs)
+- surround (nvim-surround v4, disabled)
 - blink.cmp (added but setup commented out — using native `vim.lsp.completion`)
 
 ### Remaining
-- **autopairs** — choose: `nvim-autopairs` or `mini.pairs`
-- **surround** — choose: `nvim-surround` or `mini.surround`
+- **surround** — added (disabled), enable when ready: uncomment in plugins.lua
 
 ## Neovim custom install
 
