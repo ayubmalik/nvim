@@ -4,6 +4,10 @@
 
 See [KEY_MAPS.md](KEY_MAPS.md)
 
+## Plugin Tutorials
+
+See [PLUGINS.md](PLUGINS.md) — nvim-autopairs, nvim-surround, treesitter-textobjects
+
 ## System Dependencies
 
 ```shell
