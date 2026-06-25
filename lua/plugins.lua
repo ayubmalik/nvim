@@ -13,6 +13,9 @@ vim.pack.add {
   { src = 'https://github.com/williamboman/mason.nvim' },
   -- conform
   { src = 'https://github.com/stevearc/conform.nvim' },
+  -- lualine
+  { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
+  { src = 'https://github.com/nvim-lualine/lualine.nvim' },
 }
 
 -- tokyonight
@@ -46,6 +49,9 @@ vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = 'Find buffers' })
 
 -- mason
 require('mason').setup()
+
+-- lualine
+require('lualine').setup()
 
 -- conform
 require('conform').setup {
