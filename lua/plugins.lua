@@ -20,6 +20,13 @@ vim.pack.add {
   { src = 'https://github.com/folke/which-key.nvim' },
   -- gitsigns
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+  -- diffview
+  { src = 'https://github.com/sindrets/diffview.nvim' },
+  -- lazygit
+  { src = 'https://github.com/nvim-lua/plenary.nvim' },
+  { src = 'https://github.com/kdheepak/lazygit.nvim' },
+  -- oil
+  { src = 'https://github.com/stevearc/oil.nvim' },
 }
 
 -- tokyonight
@@ -116,6 +123,17 @@ require('gitsigns').setup {
     map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = '[T]oggle git [b]lame line' })
   end,
 }
+
+-- diffview: enable by uncommenting below
+-- require('diffview').setup()
+
+-- lazygit: enable by uncommenting below
+-- require('lazygit')
+-- vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<cr>', { desc = 'Open lazy git' })
+
+-- oil: enable by uncommenting below
+-- require('oil').setup()
+-- vim.keymap.set('n', '-', '<cmd>Oil<cr>', { desc = 'Open oil file browser' })
 
 -- lualine
 require('lualine').setup {
