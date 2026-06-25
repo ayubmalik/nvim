@@ -11,6 +11,8 @@ vim.pack.add {
   { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
   -- mason
   { src = 'https://github.com/williamboman/mason.nvim' },
+  -- conform
+  { src = 'https://github.com/stevearc/conform.nvim' },
 }
 
 -- tokyonight
@@ -44,6 +46,34 @@ vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = 'Find buffers' })
 
 -- mason
 require('mason').setup()
+
+-- conform
+require('conform').setup {
+  notify_on_error = false,
+  format_on_save = function(bufnr)
+    local disable_filetypes = { c = true, cpp = true }
+    return {
+      timeout_ms = 2000,
+      lsp_format = disable_filetypes[vim.bo[bufnr].filetype] and 'never' or 'fallback',
+    }
+  end,
+  formatters_by_ft = {
+    lua = { 'stylua' },
+    go = { 'gofmt' },
+    javascript = { 'prettier' },
+    typescript = { 'prettier' },
+    typescriptreact = { 'prettier' },
+    css = { 'prettier' },
+    html = { 'prettier' },
+    json = { 'prettier' },
+    yaml = { 'prettier' },
+    markdown = { 'prettier' },
+  },
+}
+-- manual format without save: uncomment if needed
+-- vim.keymap.set('', '<leader>f', function()
+--   require('conform').format { async = true, lsp_format = 'fallback' }
+-- end, { desc = '[F]ormat buffer' })
 
 -- blink.cmp
 -- require('blink.cmp').setup {
