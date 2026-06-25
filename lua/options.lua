@@ -54,3 +54,10 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 7
 
 vim.opt.winborder = 'rounded'
+
+-- Completion popup
+vim.opt.completeopt = { 'menuone', 'noselect', 'popup', 'fuzzy' }
+vim.opt.pumheight = 7
+vim.opt.pumblend = 10
+vim.opt.pumborder = 'rounded'
+vim.cmd 'hi PmenuSel blend=0'

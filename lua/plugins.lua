@@ -9,6 +9,8 @@ vim.pack.add {
   -- blink.cmp
   { src = 'https://github.com/rafamadriz/friendly-snippets' },
   { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
+  -- mason
+  { src = 'https://github.com/williamboman/mason.nvim' },
 }
 
 -- tokyonight
@@ -40,28 +42,31 @@ vim.keymap.set('n', '<leader>s/', fzf.live_grep, { desc = '[S]earch in Project' 
 vim.keymap.set('n', '<leader>/', fzf.lgrep_curbuf, { desc = 'Search current buffer' })
 vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = 'Find buffers' })
 
+-- mason
+require('mason').setup()
+
 -- blink.cmp
-require('blink.cmp').setup {
-  keymap = { preset = 'enter' },
-  appearance = {
-    nerd_font_variant = 'mono',
-  },
-  completion = {
-    documentation = { auto_show = false },
-    list = { max_items = 100 },
-    menu = {
-      min_width = 30,
-      max_height = 15,
-      draw = {
-        columns = {
-          { 'label', 'label_description', gap = 1 },
-          { 'kind_icon', 'kind' },
-        },
-      },
-    },
-  },
-  sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer' },
-  },
-  fuzzy = { implementation = 'lua' },
-}
+-- require('blink.cmp').setup {
+--   keymap = { preset = 'enter' },
+--   appearance = {
+--     nerd_font_variant = 'mono',
+--   },
+--   completion = {
+--     documentation = { auto_show = false },
+--     list = { max_items = 100 },
+--     menu = {
+--       min_width = 30,
+--       max_height = 15,
+--       draw = {
+--         columns = {
+--           { 'label', 'label_description', gap = 1 },
+--           { 'kind_icon', 'kind' },
+--         },
+--       },
+--     },
+--   },
+--   sources = {
+--     default = { 'lsp', 'path', 'snippets', 'buffer' },
+--   },
+--   fuzzy = { implementation = 'lua' },
+-- }

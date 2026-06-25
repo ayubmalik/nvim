@@ -6,7 +6,7 @@ vim.g.maplocalleader = ' '
 require 'options'
 require 'keymaps'
 require 'plugins'
+require 'lsp'
 -- require 'autocmds'
---require 'lsp'
 -- require 'lazyvim'
 --
