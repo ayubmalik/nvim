@@ -1,23 +1,12 @@
-# README
+# Neovim Config
 
 ## Key Mappings
 
 See [KEY_MAPS.md](KEY_MAPS.md)
 
-## Neovim Reset
-
-Danger! This deletes all neovim config files.
-
+## System Dependencies
 
 ```shell
-rm -rf ~/.local/share/nvim
-rm -rf ~/.local/state/nvim
-rm -rf ~/.cache/nvim
-```
-
-## Tools Dependencies
-
-```
 sudo apt install make gcc ripgrep unzip git xclip
 ```
 
@@ -45,13 +34,19 @@ Or download the latest release from https://github.com/LuaLS/lua-language-server
 - autocmds, LSP (lua_ls, gopls, ts_ls, tailwindcss)
 - treesitter + treesitter-textobjects (new API — no nvim-treesitter.configs)
 - autopairs (nvim-autopairs)
-- surround (nvim-surround v4, disabled)
-- blink.cmp (added but setup commented out — using native `vim.lsp.completion`)
+- surround (nvim-surround v4, disabled — uncomment in plugins.lua to enable)
+- blink.cmp (added but disabled — using native `vim.lsp.completion`)
 
-### Remaining
-- **surround** — added (disabled), enable when ready: uncomment in plugins.lua
+## Neovim Reset
 
-## Neovim custom install
+Deletes all Neovim data, state and cache. Run before a clean reinstall.
+
+```shell
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim
+```
+
+## Neovim Install
 
 Read [Install Page](https://github.com/neovim/neovim/blob/master/INSTALL.md)
-
