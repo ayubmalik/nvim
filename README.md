@@ -43,14 +43,12 @@ Or download the latest release from https://github.com/LuaLS/lua-language-server
 - tokyonight, fzf-lua, mason, conform, lualine, which-key, gitsigns
 - diffview, lazygit, oil (added but not enabled)
 - autocmds, LSP (lua_ls, gopls, ts_ls, tailwindcss)
+- treesitter + treesitter-textobjects (new API — no nvim-treesitter.configs)
 - blink.cmp (added but setup commented out — using native `vim.lsp.completion`)
 
 ### Remaining
-- **treesitter** + treesitter-textobjects (drop incremental selection — native in 0.12)
 - **autopairs** — choose: `nvim-autopairs` or `mini.pairs`
 - **surround** — choose: `nvim-surround` or `mini.surround`
-- Delete `lua/lazyvim.lua` and remove `require 'lazyvim'` from `init.lua`
-- Drop debug plugin (was disabled — delete entirely)
 
 ## Neovim custom install
 

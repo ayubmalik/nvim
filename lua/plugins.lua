@@ -27,6 +27,9 @@ vim.pack.add {
   { src = 'https://github.com/kdheepak/lazygit.nvim' },
   -- oil
   { src = 'https://github.com/stevearc/oil.nvim' },
+  -- treesitter
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
 }
 
 -- tokyonight
@@ -177,6 +180,41 @@ require('conform').setup {
 -- vim.keymap.set('', '<leader>f', function()
 --   require('conform').format { async = true, lsp_format = 'fallback' }
 -- end, { desc = '[F]ormat buffer' })
+
+-- treesitter
+-- Parsers bundled in 0.12: lua, vim, vimdoc, query
+-- Run :TSInstall go typescript javascript tsx css html after first launch
+require('nvim-treesitter').setup()
+
+require('nvim-treesitter-textobjects').setup {
+  select = {
+    enable = true,
+    lookahead = true,
+    keymaps = {
+      ['af'] = '@function.outer',
+      ['if'] = '@function.inner',
+      ['ac'] = '@class.outer',
+      ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
+      ['ao'] = '@comment.outer',
+      ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'Select language scope' },
+    },
+    selection_modes = {
+      ['@parameter.outer'] = 'v',
+      ['@function.outer'] = 'V',
+      ['@class.outer'] = '<c-v>',
+    },
+    include_surrounding_whitespace = true,
+  },
+  swap = {
+    enable = true,
+    swap_next = {
+      ['<leader>a'] = { query = '@parameter.inner', desc = 'Swap with next parameter' },
+    },
+    swap_previous = {
+      ['<leader>A'] = '@parameter.inner',
+    },
+  },
+}
 
 -- blink.cmp
 -- require('blink.cmp').setup {
