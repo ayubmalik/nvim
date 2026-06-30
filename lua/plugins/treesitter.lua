@@ -6,7 +6,7 @@ return {
     local configs = require 'nvim-treesitter.configs'
 
     configs.setup {
-      -- lua, vim, vimdoc, query are bundled with nvim 0.11
+      -- lua, vim, vimdoc, query are bundled with nvim 0.12.3
       ensure_installed = {
         'go',
         'typescript',

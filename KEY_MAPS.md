@@ -26,21 +26,25 @@ Leader key: `Space`
 | | `<leader>hd` | n | Diff against index |
 | | `<leader>hD` | n | Diff against last commit |
 | | `<leader>tb` | n | Toggle inline blame |
+| **Treesitter** | `<leader>w` | n | Init selection |
+| | `<Enter>` | v | Expand selection |
+| | `<Backspace>` | v | Shrink selection |
 | **TS Textobjects** | `af` / `if` | o/v | Around / inner function |
 | | `ac` / `ic` | o/v | Around / inner class |
 | | `ao` | o/v | Around comment |
 | | `as` | o/v | Language scope |
 | | `<leader>a` | n | Swap with next parameter |
 | | `<leader>A` | n | Swap with previous parameter |
-| **LSP** | `gd` | n | Go to definition |
-| | `gD` | n | Go to declaration |
-| | `K` | n | Hover documentation |
+| **LSP (custom)** | `gD` | n | Go to declaration |
 | | `gW` | n | Workspace symbols |
+| **LSP (0.12.3 defaults)** | `gd` | n | Go to definition |
+| | `K` | n | Hover documentation |
 | | `grr` | n | Show references |
 | | `gri` | n | Go to implementation |
 | | `grn` | n | Rename symbol |
 | | `gra` | n/v | Code actions |
 | | `gO` | n | Document symbols |
+| | `gx` | n | Open document link |
 | | `<C-s>` | i | Signature help |
 | **Global** | `<Esc>` | n | Clear search highlight |
 | | `<leader>q` | n | Open diagnostic quickfix |
