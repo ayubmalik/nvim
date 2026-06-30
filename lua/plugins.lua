@@ -24,9 +24,9 @@ vim.pack.add {
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/kdheepak/lazygit.nvim' },
   { src = 'https://github.com/stevearc/oil.nvim' },
-  { src = 'https://github.com/kylechui/nvim-surround', version = '^4.0.0' },
+  { src = 'https://github.com/kylechui/nvim-surround' },
   { src = 'https://github.com/rafamadriz/friendly-snippets' },
-  { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
+  { src = 'https://github.com/saghen/blink.cmp' },
 }
 
 -- tokyonight
@@ -47,16 +47,16 @@ fzf.setup {
     color_icons = false,
   },
 }
-vim.keymap.set('n', '<leader>sf', fzf.files,                    { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>s.', fzf.oldfiles,                 { desc = '[S]earch Recent Files' })
-vim.keymap.set('n', '<leader>sh', fzf.help_tags,                { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sk', fzf.keymaps,                  { desc = '[S]earch [K]eymaps' })
-vim.keymap.set('n', '<leader>sr', fzf.resume,                   { desc = '[S]earch [R]esume' })
-vim.keymap.set('n', '<leader>ss', fzf.lsp_document_symbols,     { desc = '[S]earch [S]ymbols' })
+vim.keymap.set('n', '<leader>sf', fzf.files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>s.', fzf.oldfiles, { desc = '[S]earch Recent Files' })
+vim.keymap.set('n', '<leader>sh', fzf.help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sk', fzf.keymaps, { desc = '[S]earch [K]eymaps' })
+vim.keymap.set('n', '<leader>sr', fzf.resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>ss', fzf.lsp_document_symbols, { desc = '[S]earch [S]ymbols' })
 vim.keymap.set('n', '<leader>sw', fzf.lsp_live_workspace_symbols, { desc = '[S]earch [W]orkspace symbols' })
-vim.keymap.set('n', '<leader>s/', fzf.live_grep,                { desc = '[S]earch in Project' })
-vim.keymap.set('n', '<leader>/',  fzf.lgrep_curbuf,             { desc = 'Search current buffer' })
-vim.keymap.set('n', '<leader><leader>', fzf.buffers,            { desc = 'Find buffers' })
+vim.keymap.set('n', '<leader>s/', fzf.live_grep, { desc = '[S]earch in Project' })
+vim.keymap.set('n', '<leader>/', fzf.lgrep_curbuf, { desc = 'Search current buffer' })
+vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = 'Find buffers' })
 
 -- mason
 require('mason').setup()
@@ -64,9 +64,9 @@ require('mason').setup()
 -- which-key
 require('which-key').setup {
   spec = {
-    { '<leader>c', group = '[C]ode',      mode = { 'n', 'x' } },
+    { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
     { '<leader>d', group = '[D]ocument' },
-    { '<leader>h', group = 'Git [H]unk',  mode = { 'n', 'v' } },
+    { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
     { '<leader>s', group = '[S]earch' },
     { '<leader>w', group = '[W]orkspace' },
   },
@@ -75,17 +75,17 @@ require('which-key').setup {
 -- gitsigns
 require('gitsigns').setup {
   signs = {
-    add          = { text = '+' },
-    change       = { text = '~' },
-    delete       = { text = '_' },
-    topdelete    = { text = '‾' },
+    add = { text = '+' },
+    change = { text = '~' },
+    delete = { text = '_' },
+    topdelete = { text = '‾' },
     changedelete = { text = '~' },
   },
   signs_staged = {
-    add          = { text = '+' },
-    change       = { text = '~' },
-    delete       = { text = '_' },
-    topdelete    = { text = '‾' },
+    add = { text = '+' },
+    change = { text = '~' },
+    delete = { text = '_' },
+    topdelete = { text = '‾' },
     changedelete = { text = '~' },
   },
   on_attach = function(bufnr)
@@ -96,27 +96,60 @@ require('gitsigns').setup {
       vim.keymap.set(mode, l, r, opts)
     end
 
+    -- Navigation
     map('n', ']c', function()
-      if vim.wo.diff then vim.cmd.normal { ']c', bang = true }
-      else gs.nav_hunk 'next' end
-    end, { desc = 'Jump to next git [c]hange' })
+      if vim.wo.diff then
+        vim.cmd.normal { ']c', bang = true }
+      else
+        gs.nav_hunk 'next'
+      end
+    end, { desc = 'Next hunk (or diff change in diff mode)' })
     map('n', '[c', function()
-      if vim.wo.diff then vim.cmd.normal { '[c', bang = true }
-      else gs.nav_hunk 'prev' end
-    end, { desc = 'Jump to previous git [c]hange' })
+      if vim.wo.diff then
+        vim.cmd.normal { '[c', bang = true }
+      else
+        gs.nav_hunk 'prev'
+      end
+    end, { desc = 'Prev hunk (or diff change in diff mode)' })
 
-    map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'git [s]tage hunk' })
-    map('v', '<leader>hr', function() gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'git [r]eset hunk' })
-    map('n', '<leader>hs', gs.stage_hunk,             { desc = 'git [s]tage hunk' })
-    map('n', '<leader>hr', gs.reset_hunk,             { desc = 'git [r]eset hunk' })
-    map('n', '<leader>hS', gs.stage_buffer,           { desc = 'git [S]tage buffer' })
-    map('n', '<leader>hR', gs.reset_buffer,           { desc = 'git [R]eset buffer' })
-    map('n', '<leader>hp', gs.preview_hunk,           { desc = 'git [p]review hunk' })
-    map('n', '<leader>hi', gs.preview_hunk_inline,    { desc = 'git [i]nline preview hunk' })
-    map('n', '<leader>hb', gs.blame_line,             { desc = 'git [b]lame line' })
-    map('n', '<leader>hd', gs.diffthis,               { desc = 'git [d]iff against index' })
-    map('n', '<leader>hD', function() gs.diffthis '@' end, { desc = 'git [D]iff against last commit' })
-    map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = '[T]oggle git [b]lame line' })
+    -- Hunk actions
+    map('v', '<leader>hs', function()
+      gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+    end, { desc = 'Stage selected lines' })
+
+    map('v', '<leader>hr', function()
+      gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+    end, { desc = 'Reset selected lines' })
+
+    map('n', '<leader>hs', gs.stage_hunk, { desc = 'Stage hunk' })
+    map('n', '<leader>hr', gs.reset_hunk, { desc = 'Reset hunk' })
+    map('n', '<leader>hS', gs.stage_buffer, { desc = 'Stage entire buffer' })
+    map('n', '<leader>hR', gs.reset_buffer, { desc = 'Reset entire buffer' })
+    map('n', '<leader>hp', gs.preview_hunk, { desc = 'Preview hunk in popup' })
+    map('n', '<leader>hi', gs.preview_hunk_inline, { desc = 'Preview hunk inline' })
+
+    map('n', '<leader>hb', function()
+      gs.blame_line { full = true }
+    end, { desc = 'Blame line (full popup)' })
+
+    map('n', '<leader>hd', gs.diffthis, { desc = 'Diff buffer against index' })
+
+    map('n', '<leader>hD', function()
+      gs.diffthis '~'
+    end, { desc = 'Diff buffer against parent commit' })
+
+    map('n', '<leader>hq', gs.setqflist, { desc = 'Buffer hunks to quickfix' })
+
+    map('n', '<leader>hQ', function()
+      gs.setqflist 'all'
+    end, { desc = 'All hunks to quickfix' })
+
+    -- Toggles
+    map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'Toggle inline blame' })
+    map('n', '<leader>tw', gs.toggle_word_diff, { desc = 'Toggle word diff' })
+
+    -- Text object
+    map({ 'o', 'x' }, 'ih', gs.select_hunk, { desc = 'Select hunk' })
   end,
 }
 
@@ -146,16 +179,16 @@ require('conform').setup {
     }
   end,
   formatters_by_ft = {
-    lua        = { 'stylua' },
-    go         = { 'gofmt' },
+    lua = { 'stylua' },
+    go = { 'gofmt' },
     javascript = { 'prettier' },
     typescript = { 'prettier' },
     typescriptreact = { 'prettier' },
-    css        = { 'prettier' },
-    html       = { 'prettier' },
-    json       = { 'prettier' },
-    yaml       = { 'prettier' },
-    markdown   = { 'prettier' },
+    css = { 'prettier' },
+    html = { 'prettier' },
+    json = { 'prettier' },
+    yaml = { 'prettier' },
+    markdown = { 'prettier' },
   },
 }
 -- manual format without save: uncomment if needed
@@ -182,14 +215,14 @@ require('nvim-treesitter-textobjects').setup {
     },
     selection_modes = {
       ['@parameter.outer'] = 'v',
-      ['@function.outer']  = 'V',
-      ['@class.outer']     = '<c-v>',
+      ['@function.outer'] = 'V',
+      ['@class.outer'] = '<c-v>',
     },
     include_surrounding_whitespace = true,
   },
   swap = {
     enable = true,
-    swap_next     = { ['<leader>a'] = { query = '@parameter.inner', desc = 'Swap with next parameter' } },
+    swap_next = { ['<leader>a'] = { query = '@parameter.inner', desc = 'Swap with next parameter' } },
     swap_previous = { ['<leader>A'] = '@parameter.inner' },
   },
 }
