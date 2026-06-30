@@ -81,7 +81,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gW', vim.lsp.buf.workspace_symbol, opts)
     vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-    if client and client:supports_method('textDocument/completion') then
+
+    -- autocompletion
+    vim.opt.complete:append 'o'
+
+    if client and client:supports_method 'textDocument/completion' then
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
     end
   end,
