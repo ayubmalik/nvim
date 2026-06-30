@@ -57,6 +57,7 @@ vim.opt.winborder = 'rounded'
 vim.opt.laststatus = 3
 
 -- Completion popup
+vim.opt.autocomplete = true
 vim.opt.completeopt = { 'menuone', 'noselect', 'popup', 'fuzzy' }
 vim.opt.pumheight = 7
 vim.opt.pumblend = 10
