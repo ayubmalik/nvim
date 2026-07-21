@@ -19,41 +19,32 @@ Leader key: `Space`
 | | `<leader>hs` | n/v | Stage hunk |
 | | `<leader>hr` | n/v | Reset hunk |
 | | `<leader>hS` | n | Stage buffer |
-| | `<leader>hu` | n | Undo stage hunk |
 | | `<leader>hR` | n | Reset buffer |
 | | `<leader>hp` | n | Preview hunk |
+| | `<leader>hi` | n | Preview hunk inline |
 | | `<leader>hb` | n | Blame line |
 | | `<leader>hd` | n | Diff against index |
 | | `<leader>hD` | n | Diff against last commit |
 | | `<leader>tb` | n | Toggle inline blame |
-| | `<leader>tD` | n | Toggle show deleted |
-| **LazyGit** | `<leader>lg` | n | Open LazyGit |
-| **DAP** | `<F9>` | n | Start / Continue |
-| | `<F7>` | n | Step Into |
-| | `<F8>` | n | Step Over |
-| | `<S-F8>` | n | Step Out |
-| | `<leader>b` | n | Toggle breakpoint |
-| | `<leader>B` | n | Set conditional breakpoint |
-| | `<leader>du` | n | Toggle DAP UI |
-| **Treesitter** | `<leader>w` | n | Init incremental selection |
-| | `<Enter>` | n | Expand node selection |
-| | `<Backspace>` | n | Shrink node selection |
+| **Treesitter** | `<leader>w` | n | Init selection |
+| | `<Enter>` | v | Expand selection |
+| | `<Backspace>` | v | Shrink selection |
 | **TS Textobjects** | `af` / `if` | o/v | Around / inner function |
 | | `ac` / `ic` | o/v | Around / inner class |
 | | `ao` | o/v | Around comment |
 | | `as` | o/v | Language scope |
 | | `<leader>a` | n | Swap with next parameter |
 | | `<leader>A` | n | Swap with previous parameter |
-| **Conform** | `<leader>f` | n/v | Format buffer |
-| **LSP** | `gd` | n | Go to definition |
-| | `gD` | n | Go to declaration |
-| | `K` | n | Hover documentation |
+| **LSP (custom)** | `gD` | n | Go to declaration |
 | | `gW` | n | Workspace symbols |
+| **LSP (0.12.3 defaults)** | `gd` | n | Go to definition |
+| | `K` | n | Hover documentation |
 | | `grr` | n | Show references |
 | | `gri` | n | Go to implementation |
 | | `grn` | n | Rename symbol |
 | | `gra` | n/v | Code actions |
 | | `gO` | n | Document symbols |
+| | `gx` | n | Open document link |
 | | `<C-s>` | i | Signature help |
 | **Global** | `<Esc>` | n | Clear search highlight |
 | | `<leader>q` | n | Open diagnostic quickfix |
