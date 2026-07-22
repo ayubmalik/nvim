@@ -185,9 +185,15 @@ require('conform').setup {
     typescriptreact = { 'prettier' },
     css = { 'prettier' },
     html = { 'prettier' },
-    json = { 'prettier' },
+    json = { 'jq' },
     yaml = { 'prettier' },
     markdown = { 'prettier' },
+  },
+  formatters = {
+    jq = {
+      -- Append the 4-space indent flag to the default arguments
+      prepend_args = { '--indent', '4' },
+    },
   },
 }
 -- manual format without save: uncomment if needed
