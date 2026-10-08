@@ -1,6 +1,8 @@
 vim.pack.add {
   -- tokyonight
   { src = 'https://github.com/folke/tokyonight.nvim', version = 'stable' },
+  --catppuccin
+  { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
   -- fzf-lua
   { src = 'https://github.com/ibhagwan/fzf-lua' },
   -- mason
@@ -30,6 +32,11 @@ vim.pack.add {
 }
 
 -- tokyonight
+require('catppuccin').setup {
+  flavour = 'mocha', -- latte, frappe, macchiato, mocha
+}
+vim.cmd.colorscheme 'catppuccin'
+
 require('tokyonight').setup {
   on_colors = function(colors)
     colors.bg = '#15151e'
